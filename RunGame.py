@@ -1,9 +1,13 @@
 #contains all basic game information needed
-#is the game manager
+#is the game manager. Call necessary functions and create all necessary variables.
+#Ex, hangmanWord is an list. How do I add the correct number of underscores to it?
 def play():
     winOrLose = False
+    lettersGuessed = []
+    missesRemaining = 6
+    guess = ""
+    hangmanWord = []
     #Your Code Here
-    
 
     return winOrLose
 
@@ -16,7 +20,7 @@ def play():
 #@PARAMS:
 #lettersGuessed: a list of letters that have been previously guessed. 
 #missesRemaining: a int that represents the number of guesses that are left.
-#hangmanWord: A string array that represents the current progress in guessing the word.
+#hangmanWord: A list of strings that represents the current progress in guessing the word.
 #TODO USE THE PARAMS TO CREATE THE DISPLAY STRING SHOWN ABOVE.
 def createDisplayString(lettersGuessed, missesRemaining, hangmanWord):
     myDisplay = ""
@@ -29,13 +33,13 @@ def createDisplayString(lettersGuessed, missesRemaining, hangmanWord):
 #displayString (type: string) - the value returned by createDisplayString
 #TODO Print the displayString, 
 #     Prompt a user guess and verify it is a valid guess, 
+#     Add the guess to letters guessed
 #     Return the valid guess as a string.
 def handleUserInputLetterGuess(displayString, lettersGuessed):
-
     guess = ""
     #your code here
 
-    return 
+    return guess
 
 
 
@@ -45,16 +49,17 @@ def handleUserInputLetterGuess(displayString, lettersGuessed):
 #   secretWord: 
 
 #PARAMS EXAMPLE:
-#guessedLetter = "a"
+#   guessedLetter = "a"
 #   secretWord = "cat"
 #   hangmanWord = ["c", "_", "_"]
 
 #TODO returns the updated hangman word
 #The new hangmanWord, which is a list of strings where each string is a single letter either corresponding
 #to the same letter in secretWord or '_' if the user has not guessed the letter yet in the game.
-def updateHangmanWord():
-
-    return 
+def updateHangmanWord(hangmanWord, secretWord):
+    newHangmanWord = ""
+    
+    return newHangmanWord
 
 
 
@@ -70,7 +75,8 @@ def updateHangmanWord():
 #Index 1: (type: int) an updated value for missesLeft based on the user's guess in guessedLetter
 #Index 2: (type: bool) indication of whether the user made a correct guess, where True means the user guessed a letter in the word and False means the user missed
 
-def processUserGuess():
-
-    return
+def processUserGuess(guessedLetter, secretWord, hangmanWord, missesleft):
+    list = []
+    
+    return list
 

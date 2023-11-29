@@ -7,9 +7,10 @@ from ChooseWord import Choose
 
 def main():
     #variables necessary to play
-    secretWord = Choose
+    secretWord = Choose()
     winOrLose = False
-    continuePlay = False
+    continuePlay = True
+    
     
     #run the game
     play()

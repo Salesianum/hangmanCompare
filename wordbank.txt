@@ -1,8 +1,8 @@
-hello john
-whoops this
-Phillies in 7?
-Computer Science
-Principles Of Astronomy
-Salesianum School
-Cross Country
-Soccer Goalie
+computer
+Apple
+Cheese
+Dog
+cat
+orange
+red
+bread
