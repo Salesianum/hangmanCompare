@@ -5,9 +5,8 @@ import random
 
 #RETURNS THE CHOSEN STRING
 def Choose():
-    selectedWord = ""
     #Your code here
-    
+    selectedWord = random.choice(readFile());
     return selectedWord
 
 #READ THE CONTENTS OF WORDBANK.TXT AND RETURN AN LIST

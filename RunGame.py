@@ -1,13 +1,27 @@
 #contains all basic game information needed
 #is the game manager. Call necessary functions and create all necessary variables.
 #Ex, hangmanWord is an list. How do I add the correct number of underscores to it?
-def play():
+def play(secretWord):
     winOrLose = False
     lettersGuessed = []
     missesRemaining = 6
     guess = ""
     hangmanWord = []
     #Your Code Here
+    hangmanWord = ["_"] * len(secretWord)
+    continuePlaying = True
+    #while the game isn't over (haven't won or lost loop)
+    while(continuePlaying):
+        display = createDisplayString(lettersGuessed, missesRemaining, hangmanWord)
+        guess = handleUserInputLetterGuess(display, lettersGuessed)
+        updater = processUserGuess(guess, secretWord, hangmanWord, missesRemaining)
+        missesRemaining = updater[1]
+
+        if (not "_" in hangmanWord):
+            print(createDisplayString(lettersGuessed, missesRemaining, hangmanWord))
+            return True
+        if (missesRemaining == 0):
+            return False
 
     return winOrLose
 
@@ -22,8 +36,12 @@ def play():
 #missesRemaining: a int that represents the number of guesses that are left.
 #hangmanWord: A list of strings that represents the current progress in guessing the word.
 #TODO USE THE PARAMS TO CREATE THE DISPLAY STRING SHOWN ABOVE.
-def createDisplayString(lettersGuessed, missesRemaining, hangmanWord):
-    myDisplay = ""
+def createDisplayString(lettersGuessed, missesRemaining, hangmanWord): 
+    myDisplay = "\n\nLetters Guessed: "
+    for letter in lettersGuessed:
+        myDisplay += letter + " "
+    myDisplay += f"\nMisses Remaining: {missesRemaining}\n"
+    myDisplay += f"Word Progress: {hangmanWord}"
 
     return myDisplay
 
@@ -36,9 +54,12 @@ def createDisplayString(lettersGuessed, missesRemaining, hangmanWord):
 #     Add the guess to letters guessed
 #     Return the valid guess as a string.
 def handleUserInputLetterGuess(displayString, lettersGuessed):
-    guess = ""
     #your code here
-
+    print(displayString)
+    guess = input("Guess a Letter! ")
+    while (not guess.isalpha() or len(guess) > 1 or guess in lettersGuessed):
+        guess = input("Please enter a valid guess: ")
+    lettersGuessed.append(guess)
     return guess
 
 
@@ -56,10 +77,12 @@ def handleUserInputLetterGuess(displayString, lettersGuessed):
 #TODO returns the updated hangman word
 #The new hangmanWord, which is a list of strings where each string is a single letter either corresponding
 #to the same letter in secretWord or '_' if the user has not guessed the letter yet in the game.
-def updateHangmanWord(hangmanWord, secretWord):
-    newHangmanWord = ""
+def updateHangmanWord(hangmanWord, secretWord, guess):
+    for index in range(len(secretWord)):
+        if secretWord[index] == guess:
+            hangmanWord[index] = guess
     
-    return newHangmanWord
+    
 
 
 
@@ -77,6 +100,15 @@ def updateHangmanWord(hangmanWord, secretWord):
 
 def processUserGuess(guessedLetter, secretWord, hangmanWord, missesleft):
     list = []
+    if guessedLetter in secretWord:
+        updateHangmanWord(hangmanWord, secretWord, guessedLetter)
+        list.append(hangmanWord)
+        list.append(missesleft)
+        list.append(True)
+    else:
+        list.append(hangmanWord)
+        list.append(missesleft-1)
+        list.append(False)  
     
     return list
 
